@@ -1,0 +1,9 @@
+{
+  "name": "express-smart-cache",
+  "version": "1.0.1",
+  "description": "A lightweight caching middleware for Express using Redis or in-memory storage.",
+  "main": "index.js",
+  "keywords": ["express", "cache", "middleware", "redis", "performance"],
+  "author": "Toufiqur Rahman Tamkin",
+  "license": "MIT"
+}
