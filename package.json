@@ -1,6 +1,6 @@
 {
   "name": "express-smart-cache",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight caching middleware for Express using Redis or in-memory storage.",
   "main": "index.js",
   "type": "module",
