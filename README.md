@@ -116,38 +116,3 @@ console.log(metrics);
 | `cacheControl` | Boolean | `false` | Add HTTP cache headers |
 | `metrics` | Boolean | `false` | Track cache performance |
 | `logging` | Boolean | `false` | Enable error logging |
-
-## 🔄 Deploying Updates to NPM
-
-To deploy updates to your NPM package:
-
-1. **Update Package Version**
-   ```sh
-   # Increment version (choose one)
-   npm version patch   # 0.0.1 -> 0.0.2 (bug fixes)
-   npm version minor   # 0.0.1 -> 0.1.0 (new features)
-   npm version major   # 0.0.1 -> 1.0.0 (breaking changes)
-   ```
-
-2. **Login to NPM**
-   ```sh
-   npm login
-   ```
-
-3. **Publish the Package**
-   ```sh
-   npm publish
-   ```
-
-4. **Optional: Publish Beta/Next Versions**
-   ```sh
-   # For pre-release versions
-   npm version prerelease --preid=beta
-   npm publish --tag beta
-   ```
-
-## 🤝 Contributing
-Contributions are welcome! Please open an issue or submit a pull request.
-
-## 📄 License
-MIT License

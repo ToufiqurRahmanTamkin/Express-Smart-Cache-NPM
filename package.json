@@ -1,9 +1,23 @@
 {
   "name": "express-smart-cache",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lightweight caching middleware for Express using Redis or in-memory storage.",
   "main": "index.js",
+  "type": "module",
   "keywords": ["express", "cache", "middleware", "redis", "performance"],
   "author": "Toufiqur Rahman Tamkin",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ToufiqurRahmanTamkin/Express-Smart-Cache-NPM"
+  },
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "ioredis": "^5.3.2"
+  }
 }
