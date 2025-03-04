@@ -1,10 +1,10 @@
 {
   "name": "express-smart-cache",
   "version": "1.0.3",
-  "description": "A lightweight caching middleware for Express using Redis or in-memory storage.",
+  "description": "A powerful, lightweight caching middleware for Express.js that seamlessly integrates in-memory and Redis caching with advanced features like automatic cache invalidation, configurable TTL, and performance metrics.",
   "main": "index.js",
   "type": "module",
-  "keywords": ["express", "cache", "middleware", "redis", "performance"],
+  "keywords": ["express", "cache", "middleware", "redis", "performance", "caching", "node.js", "backend"],
   "author": "Toufiqur Rahman Tamkin",
   "license": "MIT",
   "repository": {
