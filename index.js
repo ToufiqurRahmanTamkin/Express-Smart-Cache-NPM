@@ -1,4 +1,4 @@
-import { createClient } from "ioredis";
+import Redis from 'ioredis';
 import crypto from 'crypto';
 
 class CacheMiddleware {
@@ -30,7 +30,7 @@ class CacheMiddleware {
 
     // Redis Client Setup
     if (this.config.redis) {
-      this.redisClient = createClient({
+      this.redisClient = new Redis({
         host: this.config.redisHost,
         port: this.config.redisPort
       });
