@@ -1,10 +1,24 @@
 {
   "name": "express-smart-cache",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A powerful, lightweight caching middleware for Express.js that seamlessly integrates in-memory and Redis caching with advanced features like automatic cache invalidation, configurable TTL, and performance metrics.",
-  "main": "index.js",
+  "main": "./index.cjs",
+  "module": "./index.js",
   "type": "module",
-  "keywords": ["express", "cache", "middleware", "redis", "performance", "caching", "node.js", "backend"],
+  "exports": {
+    "require": "./index.cjs",
+    "import": "./index.js"
+  },
+  "keywords": [
+    "express",
+    "cache",
+    "middleware",
+    "redis",
+    "performance",
+    "caching",
+    "node.js",
+    "backend"
+  ],
   "author": "Toufiqur Rahman Tamkin",
   "license": "MIT",
   "repository": {
@@ -12,12 +26,17 @@
     "url": "https://github.com/ToufiqurRahmanTamkin/Express-Smart-Cache-NPM"
   },
   "scripts": {
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "jest"
   },
   "engines": {
     "node": ">=14.0.0"
   },
   "dependencies": {
+    "express": "^4.21.2",
     "ioredis": "^5.3.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
