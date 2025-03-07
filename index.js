@@ -3,14 +3,11 @@ import crypto from 'crypto';
 
 class CacheMiddleware {
   constructor(options = {}) {
-    // Cache Configuration
     this.config = {
       redis: options.redis || false,
       ttl: options.ttl || 60,
       redisHost: options.redisHost || "127.0.0.1",
       redisPort: options.redisPort || 6379,
-
-      // New advanced configuration options
       cacheControl: options.cacheControl || false,
       excludeRoutes: options.excludeRoutes || [],
       allowedMethods: options.allowedMethods || ['GET'],
@@ -20,7 +17,6 @@ class CacheMiddleware {
       logging: options.logging || false
     };
 
-    // Cache Storage
     this.memoryCache = new Map();
     this.metrics = {
       hits: 0,
@@ -28,7 +24,6 @@ class CacheMiddleware {
       size: 0
     };
 
-    // Redis Client Setup
     if (this.config.redis) {
       this.redisClient = new Redis({
         host: this.config.redisHost,
@@ -38,7 +33,6 @@ class CacheMiddleware {
     }
   }
 
-  // Default Cache Key Generator
   defaultKeyGenerator(req) {
     const baseKey = req.originalUrl;
     const methodKey = req.method.toLowerCase();
@@ -49,34 +43,26 @@ class CacheMiddleware {
       .digest('hex');
   }
 
-  // Error Handling with Optional Logging
   handleError(err) {
     if (this.config.logging) {
       console.error('Cache Middleware Error:', err);
     }
   }
 
-  // Compression Utility (Basic Implementation)
   compress(data) {
-    return this.config.compression
-      ? JSON.stringify(data)
-      : data;
+    return this.config.compression ? JSON.stringify(data) : data;
   }
 
   decompress(data) {
-    return this.config.compression
-      ? JSON.parse(data)
-      : data;
+    return this.config.compression ? JSON.parse(data) : data;
   }
 
-  // Cache Access Methods
   async getCache(key) {
     try {
       if (this.config.redis) {
         const cachedValue = await this.redisClient.get(key);
         return cachedValue ? this.decompress(cachedValue) : null;
       }
-
       return this.memoryCache.get(key);
     } catch (error) {
       this.handleError(error);
@@ -95,7 +81,6 @@ class CacheMiddleware {
         setTimeout(() => this.memoryCache.delete(key), ttl * 1000);
       }
 
-      // Update Metrics
       if (this.config.metrics) {
         this.metrics.size = this.memoryCache.size;
       }
@@ -104,7 +89,6 @@ class CacheMiddleware {
     }
   }
 
-  // Cache Invalidation
   async invalidateCache(key) {
     try {
       if (this.config.redis) {
@@ -117,30 +101,24 @@ class CacheMiddleware {
     }
   }
 
-  // Middleware Core Function
   middleware() {
     return async (req, res, next) => {
-      // Route Exclusion Check
       if (this.config.excludeRoutes.includes(req.path)) {
         return next();
       }
 
-      // Method Filtering
       if (!this.config.allowedMethods.includes(req.method)) {
         return next();
       }
 
       const cacheKey = this.config.keyGenerator(req);
 
-      // Check Cached Response
       const cachedData = await this.getCache(cacheKey);
       if (cachedData) {
-        // Update Hit Metrics
         if (this.config.metrics) {
           this.metrics.hits++;
         }
 
-        // Optional Cache-Control Headers
         if (this.config.cacheControl) {
           res.set('Cache-Control', `public, max-age=${this.config.ttl}`);
         }
@@ -152,12 +130,10 @@ class CacheMiddleware {
         });
       }
 
-      // Miss Metrics
       if (this.config.metrics) {
         this.metrics.misses++;
       }
 
-      // Wrap Original JSON Method
       const originalJson = res.json.bind(res);
       res.json = async (data) => {
         await this.setCache(cacheKey, data, this.config.ttl);
@@ -168,7 +144,6 @@ class CacheMiddleware {
     };
   }
 
-  // Metrics and Performance Tracking
   getMetrics() {
     return this.config.metrics ? this.metrics : null;
   }
