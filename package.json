@@ -1,6 +1,6 @@
 {
   "name": "express-smart-cache",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A powerful, lightweight caching middleware for Express.js that seamlessly integrates in-memory and Redis caching with advanced features like automatic cache invalidation, configurable TTL, and performance metrics.",
   "main": "./index.cjs",
   "module": "./index.js",
