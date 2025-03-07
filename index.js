@@ -150,3 +150,4 @@ class CacheMiddleware {
 }
 
 export default CacheMiddleware;
+module.exports = CacheMiddleware;

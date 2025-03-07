@@ -19,8 +19,8 @@ npm install express-smart-cache
 
 ### Simple In-Memory Caching
 ```javascript
-import express from "express";
-import CacheMiddleware from "express-smart-cache";
+const express = require('express');
+const CacheMiddleware = require('express-smart-cache');
 
 const app = express();
 const cache = new CacheMiddleware({ ttl: 60 }); // Cache for 60 seconds
@@ -41,8 +41,8 @@ app.listen(3000, () => console.log("Server running on port 3000"));
 
 ### Redis Caching
 ```javascript
-import express from "express";
-import CacheMiddleware from "express-smart-cache";
+const express = require('express');
+const CacheMiddleware = require('express-smart-cache');
 
 const app = express();
 const cache = new CacheMiddleware({
